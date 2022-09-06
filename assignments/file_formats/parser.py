@@ -1,6 +1,8 @@
-# NOTICE: Python script only accepts txt and csv file
-
 import csv
+
+# ------------------------------------------------------------------------------------
+# Model
+# ------------------------------------------------------------------------------------
 
 class Song:
     def __init__(self, title, genre, artists):
@@ -11,6 +13,11 @@ class Song:
     def __str__(self):
         return self.title + " (" + self.genre + ") is played by " + ", ".join(self.artists) + "."
 
+
+# ------------------------------------------------------------------------------------
+# Parsers
+# ------------------------------------------------------------------------------------
+
 class Parser:
     def __init__(self, filename):
         self.filename = filename
@@ -18,7 +25,8 @@ class Parser:
     def parse(self):
         pass
 
-class TextParser(Parser):
+
+class TxtParser(Parser):
     def parse(self):
         extension = self.filename.split(".")[1]
         if extension != "txt":
@@ -34,6 +42,12 @@ class TextParser(Parser):
                     artists.append(f.readline()[:-1])
                 songs.append(Song(title, genre, artists))
             return songs
+
+
+class JsonParser(Parser):
+    # TODO: implement .json parser
+    pass
+
 
 class CsvParser(Parser):
     def parse(self):
@@ -55,15 +69,12 @@ class CsvParser(Parser):
                 songs.append(Song(title, genre, artists))
             return songs
 
-# ------------------------------------------------------------------------------------
-# TODO: Change filename and parser to prefered file type 
-# ------------------------------------------------------------------------------------
 
-try:
-    filename = "data.csv"
-    parser = CsvParser(filename)
-    songs = parser.parse()
-    for song in songs:
-        print(song)
-except Exception as e:
-    print(e)
+class XmlParser(Parser):
+    # TODO: implement .xml parser
+    pass
+
+
+class YamlParser(Parser):
+    # TODO: implement .yaml parser
+    pass

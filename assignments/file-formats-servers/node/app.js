@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const port = 3000
 
-const parser = require('../../file-formats/parser')
+const parser = require('../../file_formats/parser')
 
 // ------------------------------------------------------------------------------------
 // API Routes
@@ -13,7 +13,7 @@ app.get('/api/parser/txt', (req, res) => {
 })
 
 app.get('/api/parser/json', (req, res) => {
-    res.json(parser.fromJson('../../file-formats/res/data.json'))
+    res.json(parser.fromJson('../../file_formats/res/data.json'))
 })
 
 app.get('/api/parser/csv', (req, res) => {
