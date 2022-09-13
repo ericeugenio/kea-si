@@ -1,7 +1,7 @@
 import json
 
 from fastapi import FastAPI
-from ..file_formats.parser import TxtParser, CsvParser
+from scripts import Song, fromTxt, fromJson, fromXml, fromCsv, fromYaml
 
 app = FastAPI()
 
@@ -11,10 +11,9 @@ app = FastAPI()
 
 @app.get("/api/parser/txt")
 def read_txt():
-    filename = "../../file_formats/res/data.txt"
-    parser = TxtParser(filename)
-    songs = parser.parse()
-    return json.dumps(songs)
+    filename = "res/data.txt"
+    songs = fromTxt(filename)
+    return json.dumps([song.__dict__ for song in songs])
 
 @app.get("/api/parser/json")
 def read_json():
@@ -22,10 +21,9 @@ def read_json():
 
 @app.get("/api/parser/csv")
 def read_csv():
-    filename = "../../file_formats/res/data.csv"
-    parser = CsvParser(filename)
-    songs = parser.parse()
-    return json.dumps(songs)
+    filename = "res/data.csv"
+    songs = fromCsv(filename)
+    return json.dumps([song.__dict__ for song in songs])
 
 @app.get("/api/parser/xml")
 def read_xml():

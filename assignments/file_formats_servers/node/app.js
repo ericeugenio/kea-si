@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const port = 3000
 
-const parser = require('../../file_formats/parser')
+const parser = require('../../file_formats/node/parser')
 
 // ------------------------------------------------------------------------------------
 // API Routes

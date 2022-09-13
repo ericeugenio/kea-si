@@ -1,1 +1,0 @@
-from file_formats.parser import TxtParser, CsvParser
