@@ -1,32 +1,34 @@
-const express = require('express')
-const app = express()
-const port = 3000
+import express from 'express'
+import swaggerUI from 'swagger-ui-express'
+import swaggerJSDoc from 'swagger-jsdoc'
 
-const parser = require('../../file_formats/node/parser')
+const app = express()
+const port = process.env.PORT || 8080
+
+// ------------------------------------------------------------------------------------
+// API Documentation
+// ------------------------------------------------------------------------------------
+
+const options = {
+    definition: {
+        openapi: '3.0.0',
+        info: {
+            title: 'File Formats API',
+            version: '0.0.1',
+        },
+    },
+    apis: ['./routes/*.js'],
+}
+
+const swaggerSpec = swaggerJSDoc(options);
+
+app.use('/api/docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec))
 
 // ------------------------------------------------------------------------------------
 // API Routes
 // ------------------------------------------------------------------------------------
 
-app.get('/api/parser/txt', (req, res) => {
-    res.send('To be implemented...')
-})
 
-app.get('/api/parser/json', (req, res) => {
-    res.json(parser.fromJson('../../file_formats/res/data.json'))
-})
-
-app.get('/api/parser/csv', (req, res) => {
-    res.send('To be implemented...')
-})
-
-app.get('/api/parser/xml', (req, res) => {
-    res.send('To be implemented...')
-})
-
-app.get('/api/parser/yaml', (req, res) => {
-    res.send('To be implemented...')
-})
 
 // ------------------------------------------------------------------------------------
 // Server start
