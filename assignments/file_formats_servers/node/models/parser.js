@@ -1,20 +1,25 @@
-const fs = require('fs')
+import fs from 'fs'
 
-module.exports = {
-    fromTxt: function (filename) {
-        // TODO: implement .txt parser
-    },
-    fromJson: function (filename) {
-        const rawData = fs.readFileSync(filename)
-        return JSON.parse(rawData)
-    },
-    fromCsv: function (filename) {
-        // TODO: implement .csv parser
-    },
-    fromXml: function (filename) {
-        // TODO: implement .xml parser
-    },
-    fromYaml: function (filename) {
-        // TODO: implement .yaml parser
-    }
+
+function fromTxt(filename) {
+    // TODO: implement .txt parser
 }
+
+function fromJson(filename) {
+    const rawData = fs.readFileSync(filename)
+    return JSON.parse(rawData)
+}
+
+function fromCsv(filename) {
+    // TODO: implement .csv parser
+}
+
+function fromXml(filename) {
+    // TODO: implement .csv parser
+}
+
+function fromYaml(filename) {
+    // TODO: implement .csv parser
+}
+
+export { fromJson }

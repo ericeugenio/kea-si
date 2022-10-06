@@ -2,6 +2,8 @@ import express from 'express'
 import swaggerUI from 'swagger-ui-express'
 import swaggerJSDoc from 'swagger-jsdoc'
 
+import router from './routes/files.js'
+
 const app = express()
 const port = process.env.PORT || 8080
 
@@ -28,7 +30,7 @@ app.use('/api/docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec))
 // API Routes
 // ------------------------------------------------------------------------------------
 
-
+app.use(router)
 
 // ------------------------------------------------------------------------------------
 // Server start
